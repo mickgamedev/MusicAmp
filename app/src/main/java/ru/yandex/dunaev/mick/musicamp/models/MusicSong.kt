@@ -7,6 +7,7 @@ import android.media.MediaMetadataRetriever.*
 import android.util.Log
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
 
 class MusicSong(val path: String, val filename: String) {
     val album = ObservableField<String>()
@@ -35,6 +36,9 @@ class MusicSong(val path: String, val filename: String) {
 
     val isPlay = ObservableBoolean(false)
     val cover = ObservableField<Bitmap>()
+
+    val progressMax = ObservableInt(0)
+    val progressCurrent = ObservableInt(0)
 
     suspend fun extractMetaData() {
         Log.v("ExtractMD", filename)
@@ -66,6 +70,9 @@ class MusicSong(val path: String, val filename: String) {
             embeddedPicture?.let {
                 val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
                 cover.set(bitmap)
+            }
+            duration.get()?.let{
+                progressMax.set(it.toInt())
             }
             release()
         }

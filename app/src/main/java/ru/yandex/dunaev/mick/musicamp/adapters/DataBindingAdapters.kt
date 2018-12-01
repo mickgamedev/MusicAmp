@@ -17,6 +17,11 @@ fun View.SetVisibitily(b: Boolean){
     visibility = if(b) View.VISIBLE else View.GONE
 }
 
+@BindingAdapter("visibility_fade")
+fun View.SetVisibitilyFade(b: Boolean){
+    alpha = if(b) 0.3f else 1.0f
+}
+
 @BindingAdapter("music_list")
 fun RecyclerView.setLibrary(lib: List<MusicSong>?){
     lib?: return
@@ -29,6 +34,17 @@ fun RecyclerView.setLibrary(lib: List<MusicSong>?){
 fun TextView.convertDuration(st: String?){
     st?: return
     val duration = st.toLong() / 1000
+    val minutes = duration / 60
+    val seconds = duration % 60
+
+    text = "%d:%02d".format(minutes, seconds)
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("duration_int")
+fun TextView.convertDurationInt(st: Int?){
+    st?: return
+    val duration = st / 1000
     val minutes = duration / 60
     val seconds = duration % 60
 

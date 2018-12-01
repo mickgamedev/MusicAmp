@@ -20,6 +20,70 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/view"
                 android:background="@color/backgroundMusicSong" android:alpha="0.8"/>
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline3" app:layout_constraintGuide_end="71dp"/>
+        <ImageButton
+                android:contentDescription="@string/stop_text"
+                android:onClick="@{() -> viewModel.onStopCurrentSong()}"
+                android:layout_width="91dp"
+                android:layout_height="68dp" app:srcCompat="@drawable/ic_stop_single"
+                android:id="@+id/stop" style="?android:attr/borderlessButtonStyle"
+                android:scaleType="centerCrop" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="@+id/guideline3" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"/>
+        <ImageButton
+                app:visibility_fade="@{viewModel.isEndPosition}"
+                android:onClick="@{() -> viewModel.onNext()}"
+                android:contentDescription="@string/next_text"
+                android:layout_width="49dp"
+                android:layout_height="42dp" app:srcCompat="@drawable/ic_next_song"
+                android:id="@+id/next" style="?android:attr/borderlessButtonStyle"
+                android:scaleType="centerCrop" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="@+id/guideline3" app:layout_constraintStart_toEndOf="@+id/stop"
+                android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        <ImageButton
+                app:visibility_fade="@{viewModel.isStartPosition}"
+                android:onClick="@{() -> viewModel.onPrev()}"
+                android:contentDescription="@string/prev_text"
+                android:layout_width="49dp"
+                android:layout_height="42dp" app:srcCompat="@drawable/ic_prev_song"
+                android:id="@+id/imageButton3" style="?android:attr/borderlessButtonStyle"
+                android:scaleType="centerCrop" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="@+id/guideline3" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/stop" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"/>
+        <SeekBar
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekBar" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                android:layout_marginBottom="32dp" app:layout_constraintBottom_toTopOf="@+id/stop"
+                android:max="@{viewModel.currentPlay.progressMax}"
+                android:progress="@={viewModel.currentPlay.progressCurrent}"/>
+        <TextView
+                app:duration_int="@{viewModel.currentPlay.progressCurrent}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/currentTime"
+                app:layout_constraintTop_toBottomOf="@+id/seekBar" app:layout_constraintStart_toStartOf="@+id/seekBar"
+                android:minWidth="50dp" android:fontFamily="@font/roboto_light" android:textColor="@color/seek"
+                android:layout_marginStart="16dp" android:textSize="16sp"/>
+        <TextView
+                app:duration_int="@{viewModel.currentPlay.progressMax - viewModel.currentPlay.progressCurrent}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/endTime" android:minWidth="50dp" app:layout_constraintEnd_toEndOf="@+id/seekBar"
+                app:layout_constraintTop_toBottomOf="@+id/seekBar" android:fontFamily="@font/roboto_light"
+                android:textColor="@color/seek" android:textAlignment="textEnd" android:textSize="16sp"
+                android:layout_marginEnd="16dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

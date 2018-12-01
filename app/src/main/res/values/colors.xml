@@ -6,4 +6,5 @@
     <color name="backgroundMusicSong">#1a1945</color>
     <color name="musicSong">#ffffff</color>
     <color name="duration">#4070a0</color>
+    <color name="seek">#5196db</color>
 </resources>

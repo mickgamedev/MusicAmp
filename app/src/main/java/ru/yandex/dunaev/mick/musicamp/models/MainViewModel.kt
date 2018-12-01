@@ -15,6 +15,12 @@ class MainViewModel: ViewModel(){
     val currentPlay = ObservableField<MusicSong>()
 
     val isPlayer = ObservableBoolean(false)
+    val isCyclic = ObservableBoolean(true)
+    val isShuffle = ObservableBoolean(false)
+    val isEndPosition = ObservableBoolean(false)
+    val isStartPosition = ObservableBoolean(false)
+
+    private var position = -1
 
     init {
         Repository.createMusicList()
@@ -28,21 +34,59 @@ class MainViewModel: ViewModel(){
         Log.v("MVM init", "MainViewModel init complete")
     }
 
-    fun onClickMusicSong(position: Int){
+    fun onClickMusicSong(pos: Int){
         Log.v("MVM on click","position = $position")
-        musicList[position].apply {
+        musicList[pos].apply {
             if(playState()) {
-                modeStop()
-                currentPlay.set(null)
-                isPlayer.set(false)
+                onStopSong(this)
+                position = -1
             }
             else {
-                currentPlay.get()?.modeStop()
-                modePlay()
-                currentPlay.set(this)
-                isPlayer.set(true)
+                onPlaySong(this)
+                position = pos
             }
         }
+        testPosition()
+    }
+
+    fun onPlaySong(ms: MusicSong){
+        currentPlay.get()?.modeStop()
+        ms.modePlay()
+        currentPlay.set(ms)
+        isPlayer.set(true)
+
+    }
+
+    fun onStopSong(ms: MusicSong){
+        ms.modeStop()
+        currentPlay.set(null)
+        isPlayer.set(false)
+    }
+
+    fun onStopCurrentSong(){
+        currentPlay.get()?: return
+        onStopSong(currentPlay.get()!!)
+    }
+
+    fun onNext(){
+        if(position == -1) return
+        if(position == musicList.size - 1) return
+        if(isCyclic.get()) position++
+        onPlaySong(musicList[position])
+        testPosition()
+    }
+
+    fun onPrev(){
+        if(position == -1) return
+        if(position == 0) return
+        if(isCyclic.get()) position--
+        onPlaySong(musicList[position])
+        testPosition()
+    }
+
+    private fun testPosition(){
+        isStartPosition.set(position == 0)
+        isEndPosition.set(position == musicList.size - 1)
     }
 
     override fun onCleared() {

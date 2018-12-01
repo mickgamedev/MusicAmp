@@ -6,4 +6,7 @@
     <string name="play_button_text">play button</string>
     <string name="cover_image_text">cover image</string>
     <string name="background_text">background</string>
+    <string name="stop_text">Stop</string>
+    <string name="next_text">next</string>
+    <string name="prev_text">prev</string>
 </resources>
