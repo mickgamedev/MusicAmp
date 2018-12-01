@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MusicAmp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="play_button_text">play button</string>
+    <string name="cover_image_text">cover image</string>
+</resources>
