@@ -21,13 +21,16 @@ class MainActivity : AppCompatActivity() {
         model = ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.viewModel = model
         permissions()
-        setFragment(PlayerListFragment())
+
+        setFragment(PlayerListFragment(), R.id.listContainer)
+        setFragment(PlayerSongFragment(), R.id.songContainer)
+
     }
 
-    private fun setFragment(fragment: Fragment){
+    private fun setFragment(fragment: Fragment, container: Int){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
+            .replace(container, fragment)
             .commit()
     }
 

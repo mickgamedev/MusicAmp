@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#1a1945</color>
+    <color name="colorPrimaryDark">#1a1945</color>
+    <color name="colorAccent">#5194da</color>
     <color name="backgroundMusicSong">#1a1945</color>
     <color name="musicSong">#ffffff</color>
     <color name="duration">#4070a0</color>

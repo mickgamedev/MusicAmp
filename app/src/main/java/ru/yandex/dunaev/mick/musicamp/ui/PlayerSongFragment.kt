@@ -22,7 +22,7 @@ class PlayerSongFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_player_list,container,false)
+            R.layout.fragment_player_song,container,false)
         model = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
         binding.viewModel = model
         return binding.root

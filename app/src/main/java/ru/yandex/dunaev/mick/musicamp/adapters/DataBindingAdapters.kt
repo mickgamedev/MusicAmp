@@ -1,5 +1,6 @@
 package ru.yandex.dunaev.mick.musicamp.adapters
 
+import android.animation.AnimatorInflater
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Typeface
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ru.yandex.dunaev.mick.musicamp.R
 import ru.yandex.dunaev.mick.musicamp.models.MusicSong
 
 @BindingAdapter("visibility")
