@@ -24,7 +24,7 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/guideline3" app:layout_constraintGuide_end="71dp"/>
+                android:id="@+id/guideline3" app:layout_constraintGuide_end="51dp"/>
         <ImageButton
                 android:contentDescription="@string/stop_text"
                 android:onClick="@{() -> viewModel.onStopCurrentSong()}"
@@ -84,6 +84,33 @@
                 app:layout_constraintTop_toBottomOf="@+id/seekBar" android:fontFamily="@font/roboto_light"
                 android:textColor="@color/seek" android:textAlignment="textEnd" android:textSize="16sp"
                 android:layout_marginEnd="16dp"/>
+        <TextView
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit ="marquee_forever"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scrollHorizontally="true"
+
+                android:text="@{viewModel.currentPlay.title}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/title"
+                android:fontFamily="@font/roboto_light" android:textSize="36sp" android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/seekBar" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:textAlignment="center"
+                android:textColor="@color/musicSong"/>
+        <TextView
+                android:text="@{viewModel.currentPlay.author}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/author" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/title" android:textSize="20sp"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/roboto_light" android:textColor="@color/musicSong"
+                android:textAlignment="center"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

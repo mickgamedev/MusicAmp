@@ -9,4 +9,8 @@
     <string name="stop_text">Stop</string>
     <string name="next_text">next</string>
     <string name="prev_text">prev</string>
+
+    <string name="playback_channel_name">Playback</string>
+    <string name="download_channel_name">Download</string>
+
 </resources>

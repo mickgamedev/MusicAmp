@@ -23,9 +23,14 @@ class PlayerSongFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_player_song,container,false)
+
         model = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
+
         binding.viewModel = model
+        binding.title.isSelected = true
+
         return binding.root
+
     }
 
 

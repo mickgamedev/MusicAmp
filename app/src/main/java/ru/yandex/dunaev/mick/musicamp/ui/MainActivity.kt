@@ -10,6 +10,10 @@ import ru.yandex.dunaev.mick.musicamp.models.MainViewModel
 import ru.yandex.dunaev.mick.musicamp.R
 import ru.yandex.dunaev.mick.musicamp.databinding.ActivityMainBinding
 import ru.yandex.dunaev.mick.musicamp.util.toast
+import ru.yandex.dunaev.mick.musicamp.AudioPlayerService
+import android.content.Intent
+import com.google.android.exoplayer2.util.Util
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -25,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         setFragment(PlayerListFragment(), R.id.listContainer)
         setFragment(PlayerSongFragment(), R.id.songContainer)
 
+        val intent = Intent(this, AudioPlayerService::class.java)
+        Util.startForegroundService(this, intent)
     }
 
     private fun setFragment(fragment: Fragment, container: Int){
